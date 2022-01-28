@@ -1,0 +1,36 @@
+{
+	"env": {
+		"browser": true,
+		"es6": true
+	},
+	"extends": ["react-app", "prettier"],
+	"plugins": ["react", "prettier"],
+	"rules": {
+		"prettier/prettier": [
+			"warn",
+			{
+				"arrowParens": "always",
+				"semi": true,
+				"trailingComma": "es5",
+				"endOfLine": "crlf",
+				"tabWidth": 4,
+				"useTabs": true,
+				"singleQuote": true,
+				"printWidth": 80,
+				"jsxSingleQuote": false
+			}
+		],
+		"import/no-anonymous-default-export": [
+			"warn",
+			{
+				"allowArray": true,
+				"allowArrowFunction": true,
+				"allowAnonymousClass": true,
+				"allowAnonymousFunction": true,
+				"allowCallExpression": true,
+				"allowLiteral": true,
+				"allowObject": true
+			}
+		]
+	}
+}

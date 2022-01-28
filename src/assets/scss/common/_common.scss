@@ -1,0 +1,23 @@
+body,
+input,
+select,
+textarea,
+button {
+	font-family: 'Roboto', 'Apple SD Gothic Neo', sans-serif;
+	color: #333;
+	font-size: 12px;
+}
+
+.blind,
+caption span,
+legend {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1px;
+	height: 1px;
+	font-size: 0;
+	text-indent: -9999px;
+	white-space: nowrap;
+}
