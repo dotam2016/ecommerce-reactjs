@@ -44,3 +44,15 @@
 	-webkit-line-clamp: $line;
 	-webkit-box-orient: vertical;
 }
+
+@mixin rfont($font-size, $line-height: false, $font-weight: false) {
+	font-size: $font-size * 0.1rem;
+
+	@if $line-height {
+		line-height: $line-height / $font-size;
+	}
+
+	@if $font-weight {
+		font-weight: $font-weight;
+	}
+}

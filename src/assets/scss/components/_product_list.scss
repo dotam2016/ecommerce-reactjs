@@ -1,12 +1,16 @@
 .product {
 	&__list {
+		margin-top: 50px;
 		display: flex;
 		flex-wrap: wrap;
+		border-top: 1px solid $gray;
+		border-left: 1px solid $gray;
 	}
 	&__item {
 		width: 20%;
 		padding: 10px;
-		border: 1px solid #f1f1f1;
+		border-bottom: 1px solid $gray;
+		border-right: 1px solid $gray;
 		&:hover {
 			box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
 			img {
@@ -28,13 +32,12 @@
 	&__info {
 		display: flex;
 		flex-direction: column;
+		@include rfont(16, 18);
 	}
 	&__name {
-		font-size: 16px;
 	}
 	&__price {
 		margin-top: 8px;
-		font-size: 16px;
 		font-weight: 700;
 	}
 }
