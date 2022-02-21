@@ -1,0 +1,40 @@
+.product {
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	&__item {
+		width: 20%;
+		padding: 10px;
+		border: 1px solid #f1f1f1;
+		&:hover {
+			box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+			img {
+				transform: translateY(-5px);
+			}
+		}
+	}
+	&__link {
+		color: $black;
+	}
+	&__image {
+		margin-bottom: 15px;
+		text-align: center;
+		img {
+			max-height: 225px;
+			transition: all 0.3s;
+		}
+	}
+	&__info {
+		display: flex;
+		flex-direction: column;
+	}
+	&__name {
+		font-size: 16px;
+	}
+	&__price {
+		margin-top: 8px;
+		font-size: 16px;
+		font-weight: 700;
+	}
+}
