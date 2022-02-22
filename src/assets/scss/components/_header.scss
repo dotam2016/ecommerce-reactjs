@@ -14,5 +14,9 @@
 		a {
 			padding: 5px 10px;
 		}
+		.bx {
+			@include rfont(26);
+			color: $gray2;
+		}
 	}
 }

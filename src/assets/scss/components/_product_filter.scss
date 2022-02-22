@@ -1,0 +1,58 @@
+.filter {
+	&__box {
+		&:not(:first-child) {
+			margin-top: 30px;
+		}
+		.bx-checkbox {
+			@include rfont(22);
+			display: inline-block;
+			vertical-align: sub;
+		}
+		.bxs-check-square {
+			color: $blue2;
+		}
+	}
+	&__title {
+		@include rfont(16);
+		margin-bottom: 20px;
+	}
+	&__item {
+		@include rfont(16);
+		position: relative;
+		margin-bottom: 14px;
+		&--selected {
+			.filter-item__btn {
+				&:after {
+					@include rfont(15);
+					font-family: "boxicons";
+					content: "\ea41";
+					position: absolute;
+					left: 0px;
+					top: 1px;
+					color: $gray3;
+				}
+			}
+		}
+	}
+	&-item {
+		&__btn {
+			display: inline-block;
+			&:before {
+				content: "";
+				display: inline-block;
+				width: 12px;
+				height: 12px;
+				margin-right: 5px;
+				border: 1px solid $gray2;
+				border-radius: 3px;
+				vertical-align: text-top;
+			}
+			&:hover {
+				color: $red;
+			}
+		}
+		&__text {
+			@include rfont(14);
+		}
+	}
+}

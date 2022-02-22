@@ -1,0 +1,18 @@
+.breadcrumb {
+	margin: 20px 0 30px;
+	&__list {
+		@include rfont(15);
+		display: flex;
+	}
+	&-item__link {
+		&:after {
+			content: "\00bb";
+			display: inline-block;
+			margin: 0 6px;
+			color: $gray3;
+		}
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

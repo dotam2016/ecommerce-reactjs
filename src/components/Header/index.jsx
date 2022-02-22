@@ -15,13 +15,13 @@ const Header = () => {
 				<Navigation />
 				<div className="header__info">
 					<Link to="#none" className="header__search">
-						<box-icon color="#666" name="search"></box-icon>
+						<i class="bx bx-search"></i>
 					</Link>
 					<Link to="#none" className="header__cart">
-						<box-icon color="#666" name="cart"></box-icon>
+						<i class="bx bx-cart"></i>
 					</Link>
 					<Link to="#none" className="header__acc">
-						<box-icon color="#666" name="user"></box-icon>
+						<i class="bx bx-user"></i>
 					</Link>
 				</div>
 			</div>

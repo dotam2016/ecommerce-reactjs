@@ -16,7 +16,15 @@ const ProductList = () => {
 						<p className="product__name">
 							Samsung Galaxy S22+ 128GB
 						</p>
-						<span className="product__price">25.990.000 đ</span>
+						<div className="product-info__price product-info__price--sale">
+							<span className="product__original-price">
+								25.990.000 đ
+							</span>
+							<span className="product__sale-price">
+								25.190.000 đ
+							</span>
+							<span className="product__discount">4%</span>
+						</div>
 					</div>
 				</Link>
 			</div>
@@ -32,7 +40,11 @@ const ProductList = () => {
 						<p className="product__name">
 							Samsung Galaxy S22+ 128GB
 						</p>
-						<span className="product__price">25.990.000 đ</span>
+						<div className="product-info__price">
+							<span className="product__original-price">
+								25.990.000 đ
+							</span>
+						</div>
 					</div>
 				</Link>
 			</div>
@@ -48,7 +60,11 @@ const ProductList = () => {
 						<p className="product__name">
 							Samsung Galaxy S22+ 128GB
 						</p>
-						<span className="product__price">25.990.000 đ</span>
+						<div className="product-info__price">
+							<span className="product__original-price">
+								25.990.000 đ
+							</span>
+						</div>
 					</div>
 				</Link>
 			</div>
@@ -64,7 +80,11 @@ const ProductList = () => {
 						<p className="product__name">
 							Samsung Galaxy S22+ 128GB
 						</p>
-						<span className="product__price">25.990.000 đ</span>
+						<div className="product-info__price">
+							<span className="product__original-price">
+								25.990.000 đ
+							</span>
+						</div>
 					</div>
 				</Link>
 			</div>
@@ -80,7 +100,11 @@ const ProductList = () => {
 						<p className="product__name">
 							Samsung Galaxy S22+ 128GB
 						</p>
-						<span className="product__price">25.990.000 đ</span>
+						<div className="product-info__price">
+							<span className="product__original-price">
+								25.990.000 đ
+							</span>
+						</div>
 					</div>
 				</Link>
 			</div>
