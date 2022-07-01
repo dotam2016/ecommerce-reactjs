@@ -3,7 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
-import ProductDetail from "./components/ProductDetail";
+import ProductDetail from "./pages/ProductDetail";
+import AdminHome from "@/admin/Home";
+import AdminLayout from "@/admin/Layout";
+import AdminAccount from "@/admin/Account";
+import AdminLogin from "@/admin/Login";
 
 const App = () => {
 	return (
@@ -15,6 +19,11 @@ const App = () => {
 					path="/products/:slug"
 					element={<ProductDetail />}
 				></Route>
+			</Route>
+			<Route path="/admin/login" element={<AdminLogin />}></Route>
+			<Route path="/admin" element={<AdminLayout />}>
+				<Route path="" element={<AdminHome />}></Route>
+				<Route path="account" element={<AdminAccount />}></Route>
 			</Route>
 		</Routes>
 	);

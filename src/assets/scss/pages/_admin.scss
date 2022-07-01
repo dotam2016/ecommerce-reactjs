@@ -1,0 +1,38 @@
+.admin_wrap {
+	max-width: 1440px;
+	margin: 0 auto;
+	@include rfont(16, 18);
+	display: flex;
+}
+.admin_aside {
+	flex-basis: 240px;
+	.admin_gnb {
+		&_item {
+			padding: 5px 0;
+			margin-top: 5px;
+			.bx {
+				margin-right: 10px;
+			}
+
+			a {
+				&:hover,
+				&.active {
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}
+.admin_content {
+	flex: 1;
+}
+.btn_primary {
+	@include rfont(15);
+	padding: 9px 25px 8px;
+	background: $blue2;
+	border-radius: 3px;
+	color: $white;
+	&:hover {
+		opacity: 0.9;
+	}
+}
