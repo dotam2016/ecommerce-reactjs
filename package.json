@@ -3,11 +3,11 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"@notionhq/client": "^1.0.4",
 		"@reduxjs/toolkit": "^1.8.3",
 		"@testing-library/jest-dom": "^5.16.1",
 		"@testing-library/react": "^12.1.2",
 		"@testing-library/user-event": "^13.5.0",
+		"axios": "^0.27.2",
 		"boxicons": "^2.1.1",
 		"classnames": "^2.3.1",
 		"css-loader": "^6.5.1",
