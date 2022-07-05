@@ -8,6 +8,7 @@ import AdminHome from "@/admin/Home";
 import AdminLayout from "@/admin/Layout";
 import AdminAccount from "@/admin/Account";
 import AdminLogin from "@/admin/Login";
+import AdminCategory from "@/admin/Categories";
 
 const App = () => {
 	return (
@@ -24,6 +25,7 @@ const App = () => {
 			<Route path="/admin" element={<AdminLayout />}>
 				<Route path="" element={<AdminHome />}></Route>
 				<Route path="account" element={<AdminAccount />}></Route>
+				<Route path="category" element={<AdminCategory />}></Route>
 			</Route>
 		</Routes>
 	);

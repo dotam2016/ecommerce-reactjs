@@ -1,4 +1,4 @@
-.admin_wrap {
+.admin_container {
 	max-width: 1440px;
 	margin: 0 auto;
 	@include rfont(16, 18);
@@ -26,6 +26,26 @@
 .admin_content {
 	flex: 1;
 }
+.admin_header {
+	max-width: 1440px;
+	margin: 0 auto;
+	@include rfont(16, 18);
+	display: flex;
+	margin-bottom: 20px;
+	align-items: center;
+	img {
+		height: 50px;
+	}
+	.logout {
+		margin-left: auto;
+		padding: 0 20px;
+		max-height: 40px;
+		.bx {
+			@include rfont(26);
+		}
+	}
+}
+
 .btn_primary {
 	@include rfont(15);
 	padding: 9px 25px 8px;

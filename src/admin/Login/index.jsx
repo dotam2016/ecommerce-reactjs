@@ -1,19 +1,34 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { login } from "redux/userSlice";
 
 export default function AdminLogin() {
-	const [dataLogin, setDataLogin] = useState({});
+	const [cookies, setCookies, removeCookies] = useCookies(["token"]);
+	const [dataLogin, setDataLogin] = useState();
+	const [error, setError] = useState("");
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		dispatch(login(dataLogin));
+
+		const response = await dispatch(login(dataLogin));
+		const result = unwrapResult(response);
+		if (result.status) {
+			setError(result.message);
+		} else {
+			setCookies("token", result.accessToken);
+			navigate("/admin");
+		}
 	};
 	return (
 		<>
 			<div className="form_login">
 				<h1 className="title">Đăng Nhập</h1>
+				{error && <span className="color_danger">{error}</span>}
 				<form action="" onSubmit={handleSubmit}>
 					<div className="input_box">
 						<label htmlFor="username">Tài khoản</label>

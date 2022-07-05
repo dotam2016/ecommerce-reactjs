@@ -60,6 +60,10 @@
 	box-sizing: border-box;
 	.title {
 		margin-bottom: 30px;
+		+ .color_danger {
+			display: inline-block;
+			margin-bottom: 15px;
+		}
 	}
 	.input_box {
 		margin-bottom: 15px;
