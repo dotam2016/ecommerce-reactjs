@@ -56,3 +56,29 @@
 		opacity: 0.9;
 	}
 }
+
+.table {
+	margin-top: 20px;
+	td,
+	th {
+		border: 1px solid #ccc;
+		padding: 10px 5px;
+	}
+	th {
+		border-bottom: 0;
+	}
+	.btn_action {
+		padding: 4px 6px;
+		.bx {
+			@include rfont(22);
+			&:hover {
+				color: red;
+			}
+		}
+		&.primary {
+			.bx:hover {
+				color: $blue2;
+			}
+		}
+	}
+}
