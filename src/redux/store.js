@@ -8,4 +8,8 @@ export const store = configureStore({
 		category: categoryReducer,
 	},
 	devTools: true,
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: false,
+		}),
 });

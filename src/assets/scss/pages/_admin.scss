@@ -23,9 +23,7 @@
 		}
 	}
 }
-.admin_content {
-	flex: 1;
-}
+
 .admin_header {
 	max-width: 1440px;
 	margin: 0 auto;
@@ -46,6 +44,14 @@
 	}
 }
 
+.admin_content {
+	flex: 1;
+	.header_content {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
 .btn_primary {
 	@include rfont(15);
 	padding: 9px 25px 8px;
@@ -58,11 +64,12 @@
 }
 
 .table {
+	width: 100%;
 	margin-top: 20px;
 	td,
 	th {
 		border: 1px solid #ccc;
-		padding: 10px 5px;
+		padding: 10px;
 	}
 	th {
 		border-bottom: 0;
