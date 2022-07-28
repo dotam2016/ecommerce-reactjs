@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-modal";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import {
 	getCategory,
 	createCategory,
@@ -32,6 +33,7 @@ export default function AdminCategory() {
 		let data = {
 			...categoryById,
 			name: newNameCate,
+			searchTerm: toSlug(newNameCate),
 			updatedAt: new Date().getTime(),
 		};
 		dispatch(updateCategory(data))
@@ -52,19 +54,8 @@ export default function AdminCategory() {
 			dispatch(deleteCategory(id))
 				.unwrap()
 				.then((res) => {
-					console.log(res, "delete");
 					if (res.status === 200) {
-						toast.success("Bạn đã xóa danh mục", {
-							position: "top-right",
-							autoClose: 5000,
-							hideProgressBar: false,
-							newestOnTop: false,
-							closeOnClick: true,
-							rtl: false,
-							pauseOnFocusLoss: true,
-							draggable: true,
-							pauseOnHover: true,
-						});
+						toast.success("Bạn đã xóa danh mục");
 					}
 				});
 		}
@@ -74,53 +65,31 @@ export default function AdminCategory() {
 		setOpenModal(true);
 		setModalCreate(true);
 	};
-	toast.success("Tạo danh mục thành công", {
-		position: toast.POSITION.TOP_RIGHT,
-		autoClose: 5000,
-		hideProgressBar: false,
-		newestOnTop: false,
-		closeOnClick: true,
-		rtl: false,
-		pauseOnFocusLoss: true,
-		draggable: true,
-		pauseOnHover: true,
-	});
+
 	const handleCreateCategory = () => {
 		let data = {
 			id: UUID(),
 			name: newNameCate,
 			searchTerm: toSlug(newNameCate),
 			createdAt: new Date().getTime(),
-			updateAt: new Date().getTime(),
+			updatedAt: new Date().getTime(),
 		};
 
 		dispatch(createCategory(data))
 			.unwrap()
 			.then((res) => {
-				console.log(res, "create:::");
 				if (res.status === 201) {
 					setOpenModal(false);
 					setModalCreate(false);
-					toast.success("Tạo danh mục thành công", {
-						position: "top-right",
-						autoClose: 5000,
-						hideProgressBar: false,
-						newestOnTop: false,
-						closeOnClick: true,
-						rtl: false,
-						pauseOnFocusLoss: true,
-						draggable: true,
-						pauseOnHover: true,
-					});
+					setNewNameCate("");
+					toast.success("Tạo danh mục thành công");
 				}
 			});
 	};
 
 	useEffect(() => {
 		const fetchCategory = () => {
-			dispatch(getCategory())
-				.unwrap()
-				.then((res) => console.log("AdminCategory", res));
+			dispatch(getCategory());
 		};
 		fetchCategory();
 	}, []);
@@ -187,6 +156,17 @@ export default function AdminCategory() {
 						))}
 				</tbody>
 			</table>
+			<ToastContainer
+				position="top-right"
+				autoClose={2500}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss={false}
+				draggable
+				pauseOnHover
+			/>
 			<Modal
 				isOpen={openModal}
 				className={"modal_change_pwd"}

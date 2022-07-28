@@ -44,7 +44,7 @@ export const deleteCategory = createAsyncThunk(
 	"category/delete",
 	async (id) => {
 		const response = await deleteCategoryAPI(id);
-		return response;
+		return { data: response, id: id };
 	}
 );
 
@@ -62,7 +62,13 @@ export const categorySlice = createSlice({
 			);
 			state.data[index] = action.payload.data;
 		},
-		[deleteCategory.fulfilled]: (state, action) => {},
+		[deleteCategory.fulfilled]: (state, action) => {
+			const index = state.data.findIndex(
+				(item) => item.id === action.payload.data.id
+			);
+			state.data.splice(index, 1);
+		},
+
 		[createCategory.fulfilled]: (state, action) => {
 			state.data.push(action.payload.data);
 		},

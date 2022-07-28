@@ -11,9 +11,7 @@ export const getCategoryByIdAPI = async (id) => {
 };
 
 export const createCategoryAPI = async (data) => {
-	const response = await API_Admin.post(`categories`, {
-		data,
-	});
+	const response = await API_Admin.post(`categories`, data);
 	return response;
 };
 
@@ -24,7 +22,7 @@ export const editCategoryAPI = async (id, data) => {
 	return response;
 };
 
-export const deleteCategoryAPI = async (id, data) => {
+export const deleteCategoryAPI = async (id) => {
 	const response = await API_Admin.delete(`categories/${id}`);
 	return response;
 };

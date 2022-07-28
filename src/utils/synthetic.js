@@ -43,3 +43,10 @@ export const toSlug = (str) => {
 	// return
 	return str;
 };
+
+export const fomartCurrency = (value) => {
+	return new Intl.NumberFormat("it-IT", {
+		style: "currency",
+		currency: "VND",
+	}).format(value);
+};

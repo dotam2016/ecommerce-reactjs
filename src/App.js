@@ -9,6 +9,8 @@ import AdminLayout from "@/admin/Layout";
 import AdminAccount from "@/admin/Account";
 import AdminLogin from "@/admin/Login";
 import AdminCategory from "@/admin/Categories";
+import AdminProducts from "@/admin/Products";
+import AdminProductDetail from "@/admin/ProductDetail";
 
 const App = () => {
 	return (
@@ -26,6 +28,11 @@ const App = () => {
 				<Route path="" element={<AdminHome />}></Route>
 				<Route path="account" element={<AdminAccount />}></Route>
 				<Route path="category" element={<AdminCategory />}></Route>
+				<Route path="products" element={<AdminProducts />}></Route>
+				<Route
+					path="product/:productId"
+					element={<AdminProductDetail />}
+				></Route>
 			</Route>
 		</Routes>
 	);

@@ -1,0 +1,30 @@
+.pagination {
+	margin: 20px 0;
+	text-align: center;
+	&__list {
+		display: flex;
+		justify-content: center;
+	}
+	&__item {
+		&--active {
+			background-color: $blue;
+			border-radius: 50%;
+			.pagination__btn {
+				color: $white;
+			}
+		}
+		&--first,
+		&--last {
+			align-self: center;
+			margin: 0 10px;
+			background: none;
+		}
+	}
+	&__btn {
+		@include rfont(15);
+		display: block;
+		height: 30px;
+		width: 28px;
+		margin: 0 2px;
+	}
+}

@@ -68,7 +68,7 @@ export default function AdminLayout() {
 						<li className="admin_gnb_item">
 							<i className="bx bx-notepad"></i>
 							<NavLink
-								to="product"
+								to="products"
 								className={
 									(classNames("link"),
 									({ isActive }) =>

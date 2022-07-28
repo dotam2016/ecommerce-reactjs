@@ -49,6 +49,7 @@
 	.header_content {
 		display: flex;
 		justify-content: space-between;
+		align-items: baseline;
 	}
 }
 
@@ -87,5 +88,77 @@
 				color: $blue2;
 			}
 		}
+	}
+	&.table_products {
+		.btn_action {
+			padding: 2px;
+		}
+	}
+}
+
+.tbl_product_image {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+}
+
+.other-info {
+	margin-top: 10px;
+}
+
+.select_row_page {
+	position: relative;
+	padding: 5px 15px;
+	outline: none;
+	@include rfont(14);
+}
+
+.adm_frm_product {
+	margin: 40px 0;
+	.adm_lst_images_product {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 25px;
+		margin-top: 10px;
+	}
+	.itm_images_product {
+		position: relative;
+		width: 18%;
+		padding: 8px;
+		border: 1px solid $gray2;
+		border-radius: 4px;
+		img {
+			max-width: 100%;
+		}
+	}
+	.btn_delete_img {
+		position: absolute;
+		top: -14px;
+		right: -12px;
+		padding: 4px;
+		background: #fafafa;
+		border-radius: 50%;
+		.bx {
+			@include rfont(24);
+		}
+	}
+	.input_add_images {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+.ipt_box {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+	.label_name {
+		margin-bottom: 5px;
+	}
+	input {
+		@include rfont(16);
 	}
 }
