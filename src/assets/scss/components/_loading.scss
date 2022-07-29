@@ -5,6 +5,7 @@
 	left: 0;
 	bottom: 0;
 	background: rgba($black, 0.4);
+	z-index: 99;
 	.loader {
 		position: fixed;
 		top: 50%;

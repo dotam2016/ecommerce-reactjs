@@ -50,3 +50,12 @@ export const fomartCurrency = (value) => {
 		currency: "VND",
 	}).format(value);
 };
+
+export const fomartNumber = (value) => {
+	if (!value) return;
+	let curVal = value;
+	if (String(value).includes(".")) {
+		curVal = value.replaceAll(".", "");
+	}
+	return new Intl.NumberFormat("it-IT").format(Number(curVal));
+};

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductById } from "redux/productSlice";
-import { fomartCurrency, getTime } from "utils/synthetic";
+import { fomartCurrency, fomartNumber } from "utils/synthetic";
 import Loading from "components/Loading";
 
 import SunEditor from "suneditor-react";
@@ -15,10 +15,8 @@ const AdminProductDetail = () => {
 	);
 
 	const [name, setName] = useState(product?.name);
-	const [price, setPrice] = useState(fomartCurrency(product?.originalPrice));
-	const [salePrice, setSalePrice] = useState(
-		fomartCurrency(product?.salePrice)
-	);
+	const [price, setPrice] = useState(product?.originalPrice);
+	const [salePrice, setSalePrice] = useState(product?.salePrice);
 	const [shortDescription, setShortDescription] = useState(
 		product?.shortDescription
 	);
@@ -27,6 +25,21 @@ const AdminProductDetail = () => {
 
 	const handleEditorChange = (content) => {
 		setDescription(content);
+	};
+
+	const handleUploadImages = (e) => {
+		const imagesUpload = [];
+		for (let i = 0; i < e.target.files.length; i++) {
+			let file = e.target.files[i];
+			imagesUpload.push(window.URL.createObjectURL(file));
+		}
+		setImages((prev) => [...prev, ...imagesUpload]);
+	};
+
+	const handleDeleteImages = (index) => {
+		const imagesCurrent = [...images];
+		imagesCurrent.splice(index, 1);
+		setImages(imagesCurrent);
 	};
 
 	const handleUpdateProduct = () => {
@@ -62,9 +75,10 @@ const AdminProductDetail = () => {
 							</label>
 							<input
 								type="text"
-								value={price}
+								value={fomartNumber(price)}
 								onChange={(e) => setPrice(e.target.value)}
 							/>
+							<span className="unit">VNĐ</span>
 						</div>
 						<div className="ipt_box">
 							<label className="label_name" htmlFor="">
@@ -72,9 +86,10 @@ const AdminProductDetail = () => {
 							</label>
 							<input
 								type="text"
-								value={salePrice}
+								value={fomartNumber(salePrice)}
 								onChange={(e) => setSalePrice(e.target.value)}
 							/>
+							<span className="unit">VNĐ</span>
 						</div>
 						<div className="ipt_box">
 							<label className="label_name" htmlFor="">
@@ -104,17 +119,25 @@ const AdminProductDetail = () => {
 												type="button"
 												className="btn_delete_img"
 												aria-label="Xóa ảnh"
+												onClick={() =>
+													handleDeleteImages(index)
+												}
 											>
 												<i className="bx bx-x"></i>
 											</button>
 										</li>
 									))}
-								<li className="itm_images_product">
+								<li className="itm_images_product item_upload">
+									<label htmlFor="upload_images">
+										Upload Image
+									</label>
 									<input
+										id="upload_images"
 										type="file"
 										className="input_add_images"
 										multiple
 										aria-label="Upload images"
+										onChange={handleUploadImages}
 									/>
 								</li>
 							</ul>

@@ -31,9 +31,7 @@ const AdminProducts = () => {
 	};
 
 	useEffect(() => {
-		dispatch(getProducts({ currentPage, pageLimit }))
-			.unwrap()
-			.then((response) => console.log(response, "ccccc"));
+		dispatch(getProducts({ currentPage, pageLimit })).unwrap().then();
 		setSearchParams(`_page=${currentPage}`);
 	}, [currentPage, pageLimit, dispatch, searchParams, setSearchParams]);
 

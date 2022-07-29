@@ -1,10 +1,12 @@
 import React from "react";
 
-const Loading = () => {
+const Loading = ({ show }) => {
 	return (
-		<div className="loading_box">
-			<span className="loader"></span>
-		</div>
+		<>
+			<div className="loading_box">
+				<span className="loader"></span>
+			</div>
+		</>
 	);
 };
 
