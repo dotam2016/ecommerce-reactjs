@@ -7,6 +7,7 @@ import Loading from "components/Loading";
 
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
+import DropDown from "components/Dropdown";
 
 const AdminProductDetail = () => {
 	let { productId } = useParams();
@@ -27,20 +28,24 @@ const AdminProductDetail = () => {
 		setDescription(content);
 	};
 
-	const handleUploadImages = (e) => {
-		const imagesUpload = [];
-		for (let i = 0; i < e.target.files.length; i++) {
-			let file = e.target.files[i];
-			imagesUpload.push(window.URL.createObjectURL(file));
-		}
-		setImages((prev) => [...prev, ...imagesUpload]);
+	const onChangeCategory = (categoryId) => {
+		console.log(categoryId, "product detail");
 	};
 
-	const handleDeleteImages = (index) => {
-		const imagesCurrent = [...images];
-		imagesCurrent.splice(index, 1);
-		setImages(imagesCurrent);
-	};
+	// const handleUploadImages = (e) => {
+	// 	const imagesUpload = [];
+	// 	for (let i = 0; i < e.target.files.length; i++) {
+	// 		let file = e.target.files[i];
+	// 		imagesUpload.push(window.URL.createObjectURL(file));
+	// 	}
+	// 	setImages((prev) => [...prev, ...imagesUpload]);
+	// };
+
+	// const handleDeleteImages = (index) => {
+	// 	const imagesCurrent = [...images];
+	// 	imagesCurrent.splice(index, 1);
+	// 	setImages(imagesCurrent);
+	// };
 
 	const handleUpdateProduct = () => {
 		console.log("description:::", description);
@@ -93,6 +98,15 @@ const AdminProductDetail = () => {
 						</div>
 						<div className="ipt_box">
 							<label className="label_name" htmlFor="">
+								Danh mục
+							</label>
+							<DropDown
+								categoryId={product.categoryId}
+								onChangeCategory={onChangeCategory}
+							/>
+						</div>
+						<div className="ipt_box">
+							<label className="label_name" htmlFor="">
 								Mô tả
 							</label>
 							<input
@@ -103,7 +117,7 @@ const AdminProductDetail = () => {
 								}
 							/>
 						</div>
-						<div className="ipt_box">
+						{/* <div className="ipt_box">
 							<label className="label_name" htmlFor="">
 								Ảnh sản phẩm
 							</label>
@@ -141,7 +155,7 @@ const AdminProductDetail = () => {
 									/>
 								</li>
 							</ul>
-						</div>
+						</div> */}
 						<div className="ipt_box">
 							<label className="label_name" htmlFor="">
 								Thông tin chi tiết

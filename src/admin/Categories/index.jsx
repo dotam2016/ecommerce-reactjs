@@ -30,6 +30,10 @@ export default function AdminCategory() {
 	};
 
 	const handleUpdateCategory = () => {
+		if (!newNameCate) {
+			toast.warn("Bạn chưa nhập tên cho danh mục");
+			return;
+		}
 		let data = {
 			...categoryById,
 			name: newNameCate,
@@ -54,6 +58,7 @@ export default function AdminCategory() {
 			dispatch(deleteCategory(id))
 				.unwrap()
 				.then((res) => {
+					console.log(res, "ccccc");
 					if (res.status === 200) {
 						toast.success("Bạn đã xóa danh mục");
 					}
@@ -67,6 +72,10 @@ export default function AdminCategory() {
 	};
 
 	const handleCreateCategory = () => {
+		if (!newNameCate) {
+			toast.warn("Bạn chưa nhập tên cho danh mục");
+			return;
+		}
 		let data = {
 			id: UUID(),
 			name: newNameCate,

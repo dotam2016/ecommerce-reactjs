@@ -10,6 +10,7 @@ const initialState = {
 export const login = createAsyncThunk("user/login", async (data, thunkAPI) => {
 	try {
 		const response = await loginAPI(data.username, data.password);
+		console.log(response, "cccc");
 		return response;
 	} catch (err) {
 		return err.response.data;

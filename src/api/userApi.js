@@ -8,6 +8,7 @@ export const loginAPI = async (username, password) => {
 		return {
 			accessToken: response.data.accessToken,
 			username: username,
+			refreshToken: response.data.refreshToken,
 		};
 	});
 };
