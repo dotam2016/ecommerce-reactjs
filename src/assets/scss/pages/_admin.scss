@@ -1,0 +1,199 @@
+.admin_container {
+	max-width: 1440px;
+	margin: 0 auto;
+	@include rfont(16, 18);
+	display: flex;
+}
+.admin_aside {
+	flex-basis: 240px;
+	.admin_gnb {
+		&_item {
+			padding: 5px 0;
+			margin-top: 5px;
+			.bx {
+				margin-right: 10px;
+			}
+
+			a {
+				&:hover,
+				&.active {
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}
+
+.admin_header {
+	max-width: 1440px;
+	margin: 0 auto;
+	@include rfont(16, 18);
+	display: flex;
+	margin-bottom: 20px;
+	align-items: center;
+	img {
+		height: 50px;
+	}
+	.logout {
+		margin-left: auto;
+		padding: 0 20px;
+		max-height: 40px;
+		.bx {
+			@include rfont(26);
+		}
+	}
+}
+
+.admin_content {
+	flex: 1;
+	.header_content {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+}
+
+.btn_primary {
+	@include rfont(15);
+	padding: 9px 25px 8px;
+	background: $blue2;
+	border-radius: 3px;
+	color: $white;
+	&:hover {
+		opacity: 0.9;
+	}
+}
+
+.table {
+	width: 100%;
+	margin-top: 20px;
+	td,
+	th {
+		border: 1px solid #ccc;
+		padding: 10px;
+	}
+	th {
+		border-bottom: 0;
+	}
+	.btn_action {
+		padding: 4px 6px;
+		.bx {
+			@include rfont(22);
+			&:hover {
+				color: red;
+			}
+		}
+		&.primary {
+			.bx:hover {
+				color: $blue2;
+			}
+		}
+	}
+	&.table_products {
+		.btn_action {
+			padding: 2px;
+		}
+	}
+}
+
+.tbl_product_image {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+}
+
+.other-info {
+	margin-top: 10px;
+}
+
+.select_row_page {
+	position: relative;
+	padding: 5px 15px;
+	outline: none;
+	@include rfont(14);
+}
+
+.adm_frm_product {
+	margin: 40px 0;
+	.adm_lst_images_product {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 25px;
+		margin-top: 10px;
+	}
+	.itm_images_product {
+		position: relative;
+		width: 18%;
+		padding: 8px;
+		border: 1px solid rgba($gray2, 0.3);
+		border-radius: 4px;
+		&:after {
+			display: inline-block;
+			vertical-align: middle;
+			height: 100%;
+			content: "";
+		}
+		img {
+			vertical-align: middle;
+			max-width: 100%;
+		}
+		&.item_upload {
+			align-self: center;
+			padding: 0;
+			border: none;
+			label {
+				display: inline-flex;
+				padding: 15px 30px;
+				border-radius: 3px;
+				color: #fff;
+				background-color: $blue2;
+				box-shadow: 0 6px darken($blue2, 10%);
+				position: relative;
+				transition: none;
+				cursor: pointer;
+				&:hover {
+					box-shadow: 0 4px darken($blue2, 10%);
+					top: 2px;
+				}
+			}
+		}
+	}
+	.btn_delete_img {
+		position: absolute;
+		top: -14px;
+		right: -12px;
+		padding: 4px;
+		background: #fafafa;
+		border-radius: 50%;
+		.bx {
+			@include rfont(24);
+		}
+	}
+	.input_add_images {
+		overflow: hidden;
+		position: absolute;
+		width: 0;
+		height: 0;
+		font-size: 0;
+		padding: 0;
+	}
+	.unit {
+		position: absolute;
+		right: 10px;
+		top: 33px;
+		color: $red;
+	}
+}
+
+.ipt_box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+	.label_name {
+		margin-bottom: 5px;
+	}
+	input {
+		@include rfont(16);
+	}
+}

@@ -15,7 +15,7 @@
 				"endOfLine": "crlf",
 				"tabWidth": 4,
 				"useTabs": true,
-				"singleQuote": true,
+				"singleQuote": false,
 				"printWidth": 80,
 				"jsxSingleQuote": false
 			}

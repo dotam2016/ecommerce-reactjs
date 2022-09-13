@@ -1,0 +1,22 @@
+.header {
+	padding: 10px 0;
+	.logo {
+		display: inline-block;
+		vertical-align: middle;
+		img {
+			height: 50px;
+		}
+	}
+	&__info {
+		display: block;
+		float: right;
+		margin-top: 14px;
+		a {
+			padding: 5px 10px;
+		}
+		.bx {
+			@include rfont(26);
+			color: $gray2;
+		}
+	}
+}

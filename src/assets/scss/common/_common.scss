@@ -1,11 +1,14 @@
+html {
+	font-size: $initial-font-size;
+}
 body,
 input,
 select,
 textarea,
-button {
-	font-family: 'Roboto', 'Apple SD Gothic Neo', sans-serif;
+button,
+a {
+	font-family: "Roboto", "Apple SD Gothic Neo", sans-serif;
 	color: #333;
-	font-size: 12px;
 }
 
 .blind,
@@ -20,4 +23,20 @@ legend {
 	font-size: 0;
 	text-indent: -9999px;
 	white-space: nowrap;
+}
+.container {
+	max-width: 1440px;
+	margin: 0 auto;
+}
+.content {
+	display: flex;
+	margin-top: 30px;
+}
+input {
+	border: 1px solid #e8e8e8;
+	border-radius: 3px;
+	padding: 8px;
+}
+.color_danger {
+	color: red;
 }

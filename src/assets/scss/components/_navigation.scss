@@ -1,0 +1,16 @@
+.gnb {
+	display: inline-block;
+	&__lst {
+		display: flex;
+	}
+	&__item {
+		margin-right: 20px;
+	}
+	&__link {
+		color: $black;
+		@include rfont(15, 18, 600);
+		&:hover {
+			color: $blue;
+		}
+	}
+}
