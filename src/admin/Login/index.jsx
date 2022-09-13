@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -8,20 +8,25 @@ import { login } from "redux/userSlice";
 export default function AdminLogin() {
 	const [cookies, setCookies, removeCookies] = useCookies(["token"]);
 	const [dataLogin, setDataLogin] = useState();
+	const [username, setUsername] = useState();
+	const [password, setPassowrd] = useState();
 	const [error, setError] = useState("");
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		const response = await dispatch(login(dataLogin));
+		if (!username || !password) {
+			setError("Vui lòng kiểm tra thông tin đăng nhập!");
+			return;
+		}
+		const response = await dispatch(login({ username, password }));
 		const result = unwrapResult(response);
 		if (result.status) {
 			setError(result.message);
 		} else {
 			setCookies("token", result.accessToken);
-			navigate("/admin");
+			navigate("/admin/account");
 		}
 	};
 	return (
@@ -37,10 +42,7 @@ export default function AdminLogin() {
 							id="username"
 							name="username"
 							onChange={(e) => {
-								setDataLogin({
-									...dataLogin,
-									[e.target.name]: e.target.value,
-								});
+								setUsername(e.target.value);
 							}}
 						/>
 					</div>
@@ -50,12 +52,10 @@ export default function AdminLogin() {
 							type="password"
 							id="pswd"
 							name="password"
-							onChange={(e) =>
-								setDataLogin({
-									...dataLogin,
-									[e.target.name]: e.target.value,
-								})
-							}
+							autoComplete="off"
+							onChange={(e) => {
+								setPassowrd(e.target.value);
+							}}
 						/>
 					</div>
 					<div className="btn_box">

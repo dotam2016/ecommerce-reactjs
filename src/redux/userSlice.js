@@ -1,21 +1,40 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginAPI } from "api/userApi";
+import { loginAPI, refreshTokenAPI } from "api/userApi";
 
 const initialState = {
+	id: "",
 	username: "",
 	email: "",
 	token: "",
 };
 
-export const login = createAsyncThunk("user/login", async (data, thunkAPI) => {
-	try {
-		const response = await loginAPI(data.username, data.password);
-		console.log(response, "cccc");
-		return response;
-	} catch (err) {
-		return err.response.data;
+export const login = createAsyncThunk(
+	"user/login",
+	async ({ username, password }) => {
+		try {
+			const response = await loginAPI(username, password);
+			return response;
+		} catch (err) {
+			return err.response.data;
+		}
 	}
-});
+);
+
+export const refreshToken = createAsyncThunk(
+	"user/refresh-token",
+	async (data, thunkAPI) => {
+		try {
+			const response = await refreshTokenAPI(
+				data.username,
+				data.password,
+				data.refreshToken
+			);
+			return response;
+		} catch (err) {
+			return err.response.data;
+		}
+	}
+);
 
 export const userSlice = createSlice({
 	name: "user",
@@ -25,6 +44,7 @@ export const userSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder.addCase(login.fulfilled, (state, action) => {
+			state.id = action.payload.id;
 			state.username = action.payload.username;
 			state.token = action.payload.accessToken;
 		});
