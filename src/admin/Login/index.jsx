@@ -6,8 +6,7 @@ import { useCookies } from "react-cookie";
 import { login } from "redux/userSlice";
 
 export default function AdminLogin() {
-	const [cookies, setCookies, removeCookies] = useCookies(["token"]);
-	const [dataLogin, setDataLogin] = useState();
+	const [cookies, setCookies] = useCookies();
 	const [username, setUsername] = useState();
 	const [password, setPassowrd] = useState();
 	const [error, setError] = useState("");
@@ -25,6 +24,8 @@ export default function AdminLogin() {
 		if (result.status) {
 			setError(result.message);
 		} else {
+			setCookies("id", result.id);
+			setCookies("username", result.username);
 			setCookies("token", result.accessToken);
 			navigate("/admin/account");
 		}

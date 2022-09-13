@@ -1,11 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { loginAPI, refreshTokenAPI } from "api/userApi";
+import { Cookies } from "react-cookie";
 
 const initialState = {
-	id: "",
-	username: "",
-	email: "",
-	token: "",
+	id: new Cookies().get("id") || "",
+	username: new Cookies().get("username") || "",
 };
 
 export const login = createAsyncThunk(
@@ -46,7 +45,6 @@ export const userSlice = createSlice({
 		builder.addCase(login.fulfilled, (state, action) => {
 			state.id = action.payload.id;
 			state.username = action.payload.username;
-			state.token = action.payload.accessToken;
 		});
 	},
 });

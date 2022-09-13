@@ -17,8 +17,8 @@ const AdminProducts = () => {
 		searchParams.get("_page") ? searchParams.get("_page") : 1
 	);
 	const [pageLimit, setPageLimit] = useState(15);
-	const [isLoading, setIsLoading] = useState(false);
 
+	const isLoading = useSelector((state) => state.products.loading);
 	const products = useSelector((state) => state.products.data);
 	const pagination = useSelector((state) => state.products.pagination);
 
@@ -52,7 +52,6 @@ const AdminProducts = () => {
 							className="select_row_page"
 							name="select_row_page"
 							id="select_row_page_id"
-							content="fdsafdsa"
 							defaultValue="15"
 							onChange={(e) => setPageLimit(e.target.value)}
 						>
@@ -67,89 +66,96 @@ const AdminProducts = () => {
 					+ Thêm mới sản phẩm
 				</button>
 			</div>
-			<table className="table table_products">
-				<caption className="blind">Quản lý sản phẩm</caption>
-				<colgroup>
-					<col width="60px" />
-					<col width="250px" />
-					<col width="" />
-					<col width="400px" />
-					<col width="" />
-					<col width="" />
-					<col width="" />
-					<col width="" />
-					<col width="115px" />
-				</colgroup>
-				<thead>
-					<tr>
-						<th>STT</th>
-						<th>Tên</th>
-						<th>Image</th>
-						<th>Mô tả</th>
-						<th>Giá</th>
-						<th>Giá Khuyến mại</th>
-						<th>Created</th>
-						<th>Updated</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{products.length > 0 ? (
-						products.map((product, index) => (
-							<tr key={product.id}>
-								<td align="center">{index + 1}</td>
-								<td>
-									<p>{product.name}</p>
-									{product.isFreeShip && (
-										<span>Miễn phí vận chuyển</span>
-									)}
-								</td>
-								<td>
-									<img
-										src={product.images[0]}
-										alt={product.name}
-										className="tbl_product_image"
-										onError={(e) =>
-											(e.target.src = product.images[1])
-										}
-									/>
-								</td>
-								<td>{product.shortDescription}</td>
-								<td>{fomartCurrency(product.originalPrice)}</td>
-								<td>{fomartCurrency(product.salePrice)}</td>
-								<td>{getTime(product.createdAt)}</td>
-								<td>{getTime(product.updatedAt)}</td>
-								<td>
-									<button
-										type="button"
-										className="btn_action primary"
-										onClick={() =>
-											handleEditProduct(product.id)
-										}
-									>
-										<i className="bx bx-edit"></i>
-									</button>
-									<button
-										type="button"
-										className="btn_action"
-										// onClick={() =>
-										// 	handleDeleteCategory(category.id)
-										// }
-									>
-										<i className="bx bx-x-circle"></i>
-									</button>
+			{isLoading === "pending" ? (
+				<Loading show={true} />
+			) : (
+				<table className="table table_products">
+					<caption className="blind">Quản lý sản phẩm</caption>
+					<colgroup>
+						<col width="60px" />
+						<col width="250px" />
+						<col width="" />
+						<col width="400px" />
+						<col width="" />
+						<col width="" />
+						<col width="" />
+						<col width="" />
+						<col width="115px" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>STT</th>
+							<th>Tên</th>
+							<th>Image</th>
+							<th>Mô tả</th>
+							<th>Giá</th>
+							<th>Giá Khuyến mại</th>
+							<th>Created</th>
+							<th>Updated</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{products.length > 0 ? (
+							products.map((product, index) => (
+								<tr key={product.id}>
+									<td align="center">{index + 1}</td>
+									<td>
+										<p>{product.name}</p>
+										{product.isFreeShip && (
+											<span>Miễn phí vận chuyển</span>
+										)}
+									</td>
+									<td>
+										<img
+											src={product.images[0]}
+											alt={product.name}
+											className="tbl_product_image"
+											onError={(e) =>
+												(e.target.src =
+													product.images[1])
+											}
+										/>
+									</td>
+									<td>{product.shortDescription}</td>
+									<td>
+										{fomartCurrency(product.originalPrice)}
+									</td>
+									<td>{fomartCurrency(product.salePrice)}</td>
+									<td>{getTime(product.createdAt)}</td>
+									<td>{getTime(product.updatedAt)}</td>
+									<td>
+										<button
+											type="button"
+											className="btn_action primary"
+											onClick={() =>
+												handleEditProduct(product.id)
+											}
+										>
+											<i className="bx bx-edit"></i>
+										</button>
+										<button
+											type="button"
+											className="btn_action"
+											// onClick={() =>
+											// 	handleDeleteCategory(category.id)
+											// }
+										>
+											<i className="bx bx-x-circle"></i>
+										</button>
+									</td>
+								</tr>
+							))
+						) : (
+							<tr>
+								<td colSpan={9} align="center">
+									<b>Không tìm thấy sản phẩm phù hợp</b>
 								</td>
 							</tr>
-						))
-					) : (
-						<tr>
-							<td colSpan={9} align="center">
-								<b>Không tìm thấy sản phẩm phù hợp</b>
-							</td>
-						</tr>
-					)}
-				</tbody>
-			</table>
+						)}
+					</tbody>
+				</table>
+			)}
 			{products.length > 0 &&
 				Math.ceil(pagination._totalRows / pageLimit) > 1 && (
 					<Pagination
@@ -159,7 +165,6 @@ const AdminProducts = () => {
 						onPageChange={handlePageChange}
 					/>
 				)}
-			{isLoading && <Loading />}
 		</>
 	);
 };

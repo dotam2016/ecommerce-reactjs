@@ -8,6 +8,7 @@ import {
 } from "api/categoryApi";
 
 const initialState = {
+	loading: "idle",
 	data: [],
 };
 
@@ -53,7 +54,11 @@ export const categorySlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: {
+		[getCategory.pending]: (state) => {
+			state.loading = "pending";
+		},
 		[getCategory.fulfilled]: (state, action) => {
+			state.loading = "succeeded";
 			state.data = action.payload.data;
 		},
 		[updateCategory.fulfilled]: (state, action) => {

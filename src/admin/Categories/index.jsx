@@ -10,6 +10,7 @@ import {
 	deleteCategory,
 } from "redux/categorySlice";
 import { UUID, getTime, toSlug } from "@/utils/synthetic";
+import Loading from "components/Loading";
 
 export default function AdminCategory() {
 	document.title = "Admin Category";
@@ -20,6 +21,7 @@ export default function AdminCategory() {
 	const [modalCreate, setModalCreate] = useState(false);
 
 	const dispatch = useDispatch();
+	const isLoading = useSelector((state) => state.category.loading);
 	const categoryList = useSelector((state) => state.category.data);
 
 	const handleShowModalCategory = (id) => {
@@ -115,56 +117,66 @@ export default function AdminCategory() {
 					+ Thêm mới danh mục
 				</button>
 			</div>
-			<table className="table">
-				<caption className="blind">Quản lý danh mục sản phẩm</caption>
-				<colgroup>
-					<col width="60px" />
-					<col width="auto" />
-					<col width="200px" />
-					<col width="200px" />
-					<col width="95px" />
-				</colgroup>
-				<thead>
-					<tr>
-						<th>STT</th>
-						<th>Tên</th>
-						<th>Created</th>
-						<th>Update</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{categoryList.length > 0 &&
-						categoryList.map((category, index) => (
-							<tr key={index}>
-								<td align="center">{index + 1}</td>
-								<td>{category.name}</td>
-								<td>{getTime(category.createdAt)}</td>
-								<td>{getTime(category.updatedAt)}</td>
-								<td>
-									<button
-										type="button"
-										className="btn_action primary"
-										onClick={() =>
-											handleShowModalCategory(category.id)
-										}
-									>
-										<i className="bx bx-edit"></i>
-									</button>
-									<button
-										type="button"
-										className="btn_action"
-										onClick={() =>
-											handleDeleteCategory(category.id)
-										}
-									>
-										<i className="bx bx-x-circle"></i>
-									</button>
-								</td>
-							</tr>
-						))}
-				</tbody>
-			</table>
+			{isLoading === "pending" ? (
+				<Loading show={true} />
+			) : (
+				<table className="table">
+					<caption className="blind">
+						Quản lý danh mục sản phẩm
+					</caption>
+					<colgroup>
+						<col width="60px" />
+						<col width="auto" />
+						<col width="200px" />
+						<col width="200px" />
+						<col width="95px" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>STT</th>
+							<th>Tên</th>
+							<th>Created</th>
+							<th>Update</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{categoryList.length > 0 &&
+							categoryList.map((category, index) => (
+								<tr key={index}>
+									<td align="center">{index + 1}</td>
+									<td>{category.name}</td>
+									<td>{getTime(category.createdAt)}</td>
+									<td>{getTime(category.updatedAt)}</td>
+									<td>
+										<button
+											type="button"
+											className="btn_action primary"
+											onClick={() =>
+												handleShowModalCategory(
+													category.id
+												)
+											}
+										>
+											<i className="bx bx-edit"></i>
+										</button>
+										<button
+											type="button"
+											className="btn_action"
+											onClick={() =>
+												handleDeleteCategory(
+													category.id
+												)
+											}
+										>
+											<i className="bx bx-x-circle"></i>
+										</button>
+									</td>
+								</tr>
+							))}
+					</tbody>
+				</table>
+			)}
 			<ToastContainer
 				position="top-right"
 				autoClose={2500}

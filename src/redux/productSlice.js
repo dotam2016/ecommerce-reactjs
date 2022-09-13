@@ -25,11 +25,11 @@ export const productSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: {
-		[getProducts.fulfilled]: (state, action) => {
-			state.data = action.payload.data.data;
-			state.pagination = action.payload.data.pagination;
+		[getProducts.pending]: (state) => {
+			state.loading = "pending";
 		},
 		[getProducts.fulfilled]: (state, action) => {
+			state.loading = "succeeded";
 			state.data = action.payload.data.data;
 			state.pagination = action.payload.data.pagination;
 		},
