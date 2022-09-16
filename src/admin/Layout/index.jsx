@@ -7,15 +7,17 @@ import { logout } from "redux/userSlice";
 import Logo from "../../logo.svg";
 
 export default function AdminLayout() {
-	const [cookies, setCookies, removeCookies] = useCookies(["token"]);
+	const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const user = useSelector((state) => state.user);
 
 	const handleLogout = () => {
+		removeCookie("id");
+		removeCookie("username");
+		removeCookie("token");
 		dispatch(logout());
-		removeCookies("token");
 		navigate("/admin/login");
 	};
 

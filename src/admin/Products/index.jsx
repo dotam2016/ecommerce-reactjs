@@ -5,6 +5,7 @@ import { getProducts } from "redux/productSlice";
 import { fomartCurrency, getTime } from "utils/synthetic";
 import Pagination from "components/Pagination";
 import Loading from "components/Loading";
+import Toogle from "components/Toogle";
 
 // const pageLimit = 15;
 
@@ -80,6 +81,7 @@ const AdminProducts = () => {
 						<col width="" />
 						<col width="" />
 						<col width="" />
+						<col width="" />
 						<col width="115px" />
 					</colgroup>
 					<thead>
@@ -92,6 +94,7 @@ const AdminProducts = () => {
 							<th>Giá Khuyến mại</th>
 							<th>Created</th>
 							<th>Updated</th>
+							<th>Hiển thị</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -124,6 +127,9 @@ const AdminProducts = () => {
 									<td>{fomartCurrency(product.salePrice)}</td>
 									<td>{getTime(product.createdAt)}</td>
 									<td>{getTime(product.updatedAt)}</td>
+									<td>
+										<Toogle name={`toggle-${index}`} />
+									</td>
 									<td>
 										<button
 											type="button"

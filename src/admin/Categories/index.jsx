@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-modal";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
 import {
 	getCategory,
 	createCategory,
@@ -11,6 +10,8 @@ import {
 } from "redux/categorySlice";
 import { UUID, getTime, toSlug } from "@/utils/synthetic";
 import Loading from "components/Loading";
+
+import "react-toastify/dist/ReactToastify.min.css";
 
 export default function AdminCategory() {
 	document.title = "Admin Category";
@@ -60,7 +61,6 @@ export default function AdminCategory() {
 			dispatch(deleteCategory(id))
 				.unwrap()
 				.then((res) => {
-					console.log(res, "ccccc");
 					if (res.status === 200) {
 						toast.success("Bạn đã xóa danh mục");
 					}

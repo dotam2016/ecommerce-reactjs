@@ -57,16 +57,19 @@ export const categorySlice = createSlice({
 		[getCategory.pending]: (state) => {
 			state.loading = "pending";
 		},
+
 		[getCategory.fulfilled]: (state, action) => {
 			state.loading = "succeeded";
 			state.data = action.payload.data;
 		},
+
 		[updateCategory.fulfilled]: (state, action) => {
 			const index = state.data.findIndex(
 				(item) => item.id === action.payload.data.id
 			);
 			state.data[index] = action.payload.data;
 		},
+
 		[deleteCategory.fulfilled]: (state, action) => {
 			const index = state.data.findIndex(
 				(item) => item.id === action.payload.data.id

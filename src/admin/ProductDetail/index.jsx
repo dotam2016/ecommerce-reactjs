@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProductById } from "redux/productSlice";
+import { getProductById, updateProduct } from "redux/productSlice";
 import { fomartCurrency, fomartNumber } from "utils/synthetic";
 import Loading from "components/Loading";
-
-import SunEditor from "suneditor-react";
-import "suneditor/dist/css/suneditor.min.css";
 import DropDown from "components/Dropdown";
+import { toast, ToastContainer } from "react-toastify";
+import SunEditor from "suneditor-react";
+
+import "react-toastify/dist/ReactToastify.min.css";
+import "suneditor/dist/css/suneditor.min.css";
 
 const AdminProductDetail = () => {
 	let { productId } = useParams();
 	const product = useSelector((state) =>
 		getProductById(state.products, productId)
 	);
+
+	const dispatch = useDispatch();
 
 	const [name, setName] = useState(product?.name);
 	const [price, setPrice] = useState(product?.originalPrice);
@@ -28,9 +32,9 @@ const AdminProductDetail = () => {
 		setDescription(content);
 	};
 
-	const onChangeCategory = (categoryId) => {
-		console.log(categoryId, "product detail");
-	};
+	// const onChangeCategory = (categoryId) => {
+	// 	console.log(categoryId, "product detail");
+	// };
 
 	// const handleUploadImages = (e) => {
 	// 	const imagesUpload = [];
@@ -48,7 +52,22 @@ const AdminProductDetail = () => {
 	// };
 
 	const handleUpdateProduct = () => {
-		console.log("description:::", description);
+		let data = {
+			name: name,
+			originalPrice: Number(String(price).replaceAll(".", "")),
+			salePrice: Number(String(salePrice).replaceAll(".", "")),
+			shortDescription: shortDescription,
+			description: description,
+			updatedAt: new Date().getTime(),
+		};
+		dispatch(updateProduct({ id: productId, data }))
+			.unwrap()
+			.then((res) => {
+				console.log(res);
+				if (res.status === 200) {
+					toast.success("Bạn cập nhật sản phẩm thành công");
+				}
+			});
 	};
 
 	return (
@@ -100,10 +119,10 @@ const AdminProductDetail = () => {
 							<label className="label_name" htmlFor="">
 								Danh mục
 							</label>
-							<DropDown
+							{/* <DropDown
 								categoryId={product.categoryId}
 								onChangeCategory={onChangeCategory}
-							/>
+							/> */}
 						</div>
 						<div className="ipt_box">
 							<label className="label_name" htmlFor="">
@@ -176,6 +195,17 @@ const AdminProductDetail = () => {
 					</form>
 				</div>
 			</div>
+			<ToastContainer
+				position="top-right"
+				autoClose={2500}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss={false}
+				draggable
+				pauseOnHover
+			/>
 		</>
 	);
 };

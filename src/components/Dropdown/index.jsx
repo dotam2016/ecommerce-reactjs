@@ -10,7 +10,6 @@ const DropDown = ({ categoryId, onChangeCategory }) => {
 
 	const initialState = (categoryId) => {
 		let categoryName = "";
-		console.log(categoryList);
 		if (categoryId) {
 			let result = categoryList.filter((itm) => itm.id === categoryId);
 			if (result.length) categoryName = categoryName[0].name;

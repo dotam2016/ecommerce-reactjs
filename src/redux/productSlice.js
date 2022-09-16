@@ -15,10 +15,13 @@ export const getProducts = createAsyncThunk(
 	}
 );
 
-export const editProduct = createAsyncThunk("product/edit", ({ id, data }) => {
-	const response = editProductAPI(id, data);
-	return response;
-});
+export const updateProduct = createAsyncThunk(
+	"product/update",
+	({ id, data }) => {
+		const response = editProductAPI(id, data);
+		return response;
+	}
+);
 
 export const productSlice = createSlice({
 	name: "products",
@@ -28,10 +31,18 @@ export const productSlice = createSlice({
 		[getProducts.pending]: (state) => {
 			state.loading = "pending";
 		},
+
 		[getProducts.fulfilled]: (state, action) => {
 			state.loading = "succeeded";
 			state.data = action.payload.data.data;
 			state.pagination = action.payload.data.pagination;
+		},
+
+		[updateProduct.fulfilled]: (state, action) => {
+			const index = state.data.findIndex(
+				(item) => item.id === action.payload.data.id
+			);
+			state.data[index] = action.payload.data;
 		},
 	},
 });
