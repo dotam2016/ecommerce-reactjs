@@ -4,9 +4,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const imageList = [
-	"http://hanghaimobile.com/wp-content/uploads/2021/03/ms_banner_img3.png",
+	"https://fixinmin.com/wp-content/uploads/2022/09/banner.jpg",
 	"https://s.yimg.com/os/creatr-uploaded-images/2021-12/56ca57c0-600f-11ec-befb-522263874ea1",
-	"https://admin.gse.ae/uploads/slide/Gse_ca6b987358d345a5b374ca117732afc1_Slide.jpg",
+	"https://cdn.techzones.vn/Data/Sites/1/media/tin-t%E1%BB%A9c-/samsung-gear-s2-sport/samsung-gear-s2-sport-3.jpg?w=1920",
+	"https://fixinmin.com/wp-content/uploads/2022/11/phone-banner-2.jpg",
+	"https://itechcorrect.co.uk/wp-content/uploads/2016/03/iPad-Repair-Banner1-1.jpg",
 ];
 
 const Slider = () => {
