@@ -10,6 +10,7 @@ import SunEditor from "suneditor-react";
 
 import "react-toastify/dist/ReactToastify.min.css";
 import "suneditor/dist/css/suneditor.min.css";
+import Toggle from "components/Toggle";
 
 const AdminProductDetail = () => {
 	let { productId } = useParams();
@@ -26,6 +27,7 @@ const AdminProductDetail = () => {
 		product?.shortDescription
 	);
 	const [description, setDescription] = useState(product?.description);
+	const [displayStatus, setDisplayStatus] = useState(product?.isShow);
 	const [images, setImages] = useState(product?.images);
 
 	const handleEditorChange = (content) => {
@@ -63,11 +65,15 @@ const AdminProductDetail = () => {
 		dispatch(updateProduct({ id: productId, data }))
 			.unwrap()
 			.then((res) => {
-				console.log(res);
 				if (res.status === 200) {
 					toast.success("Bạn cập nhật sản phẩm thành công");
 				}
 			});
+	};
+
+	const handleOnChange = (e) => {
+		console.log("cccccccccc");
+		setDisplayStatus(false);
 	};
 
 	return (
@@ -84,9 +90,7 @@ const AdminProductDetail = () => {
 				<div className="adm_frm_product">
 					<form>
 						<div className="ipt_box">
-							<label className="label_name" htmlFor="">
-								Tên sản phẩm
-							</label>
+							<label className="label_name">Tên sản phẩm</label>
 							<input
 								type="text"
 								value={name}
@@ -94,9 +98,18 @@ const AdminProductDetail = () => {
 							/>
 						</div>
 						<div className="ipt_box">
-							<label className="label_name" htmlFor="">
-								Giá
-							</label>
+							<span>Trạng thái</span>
+							<Toggle
+								isChecked={displayStatus}
+								name={productId}
+								onChangeEvt={(e) =>
+									setDisplayStatus(e.target.checked)
+								}
+							/>
+							<strong>{displayStatus ? "Hiển thị" : "Ẩn"}</strong>
+						</div>
+						<div className="ipt_box">
+							<label className="label_name">Giá</label>
 							<input
 								type="text"
 								value={fomartNumber(price)}
@@ -105,9 +118,7 @@ const AdminProductDetail = () => {
 							<span className="unit">VNĐ</span>
 						</div>
 						<div className="ipt_box">
-							<label className="label_name" htmlFor="">
-								Giá khuyến mại
-							</label>
+							<label className="label_name">Giá khuyến mại</label>
 							<input
 								type="text"
 								value={fomartNumber(salePrice)}
@@ -116,18 +127,14 @@ const AdminProductDetail = () => {
 							<span className="unit">VNĐ</span>
 						</div>
 						<div className="ipt_box">
-							<label className="label_name" htmlFor="">
-								Danh mục
-							</label>
+							<label className="label_name">Danh mục</label>
 							{/* <DropDown
 								categoryId={product.categoryId}
 								onChangeCategory={onChangeCategory}
 							/> */}
 						</div>
 						<div className="ipt_box">
-							<label className="label_name" htmlFor="">
-								Mô tả
-							</label>
+							<label className="label_name">Mô tả</label>
 							<input
 								type="text"
 								value={shortDescription}
@@ -137,7 +144,7 @@ const AdminProductDetail = () => {
 							/>
 						</div>
 						{/* <div className="ipt_box">
-							<label className="label_name" htmlFor="">
+							<label className="label_name">
 								Ảnh sản phẩm
 							</label>
 							<ul className="adm_lst_images_product">
@@ -176,7 +183,7 @@ const AdminProductDetail = () => {
 							</ul>
 						</div> */}
 						<div className="ipt_box">
-							<label className="label_name" htmlFor="">
+							<label className="label_name">
 								Thông tin chi tiết
 							</label>
 							<SunEditor

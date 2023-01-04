@@ -5,7 +5,6 @@ import { getProducts } from "redux/productSlice";
 import { fomartCurrency, getTime } from "utils/synthetic";
 import Pagination from "components/Pagination";
 import Loading from "components/Loading";
-import Toogle from "components/Toogle";
 
 // const pageLimit = 15;
 
@@ -82,7 +81,7 @@ const AdminProducts = () => {
 						<col width="" />
 						<col width="" />
 						<col width="" />
-						<col width="115px" />
+						<col width="125px" />
 					</colgroup>
 					<thead>
 						<tr>
@@ -94,7 +93,7 @@ const AdminProducts = () => {
 							<th>Giá Khuyến mại</th>
 							<th>Created</th>
 							<th>Updated</th>
-							<th>Hiển thị</th>
+							<th>Trạng thái</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -128,7 +127,9 @@ const AdminProducts = () => {
 									<td>{getTime(product.createdAt)}</td>
 									<td>{getTime(product.updatedAt)}</td>
 									<td>
-										<Toogle name={`toggle-${index}`} />
+										<strong>
+											{product.isShow ? "Hiển thị" : "Ẩn"}
+										</strong>
 									</td>
 									<td>
 										<button
@@ -163,7 +164,8 @@ const AdminProducts = () => {
 				</table>
 			)}
 			{products.length > 0 &&
-				Math.ceil(pagination._totalRows / pageLimit) > 1 && (
+				Math.ceil(pagination._totalRows / pageLimit) > 1 &&
+				isLoading !== "pending" && (
 					<Pagination
 						current={currentPage}
 						totalRows={pagination._totalRows}
