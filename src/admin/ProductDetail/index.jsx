@@ -34,9 +34,9 @@ const AdminProductDetail = () => {
 		setDescription(content);
 	};
 
-	// const onChangeCategory = (categoryId) => {
-	// 	console.log(categoryId, "product detail");
-	// };
+	const onChangeCategory = (categoryId) => {
+		console.log(categoryId, "product detail");
+	};
 
 	// const handleUploadImages = (e) => {
 	// 	const imagesUpload = [];
@@ -60,8 +60,10 @@ const AdminProductDetail = () => {
 			salePrice: Number(String(salePrice).replaceAll(".", "")),
 			shortDescription: shortDescription,
 			description: description,
+			isShow: displayStatus,
 			updatedAt: new Date().getTime(),
 		};
+
 		dispatch(updateProduct({ id: productId, data }))
 			.unwrap()
 			.then((res) => {
@@ -97,8 +99,16 @@ const AdminProductDetail = () => {
 								onChange={(e) => setName(e.target.value)}
 							/>
 						</div>
-						<div className="ipt_box">
-							<span>Trạng thái</span>
+						<div
+							className="ipt_box"
+							style={{
+								display: "flex",
+								flexDirection: "row",
+								alignItems: "center",
+								gap: "10px",
+							}}
+						>
+							<span>Trạng thái: </span>
 							<Toggle
 								isChecked={displayStatus}
 								name={productId}
@@ -128,25 +138,39 @@ const AdminProductDetail = () => {
 						</div>
 						<div className="ipt_box">
 							<label className="label_name">Danh mục</label>
-							{/* <DropDown
+							<DropDown
 								categoryId={product.categoryId}
-								onChangeCategory={onChangeCategory}
-							/> */}
+								onChange={onChangeCategory}
+							/>
 						</div>
 						<div className="ipt_box">
 							<label className="label_name">Mô tả</label>
-							<input
+							{/* <textarea
+								name="short-description"
+								cols="30"
+								rows="5"
+								value={shortDescription}
+								onChange={(e) =>
+									setShortDescription(e.target.value)
+								}
+							></textarea> */}
+							<SunEditor
+								defaultValue={shortDescription}
+								height="300"
+								onChange={(content) =>
+									setShortDescription(content)
+								}
+							/>
+							{/* <input
 								type="text"
 								value={shortDescription}
 								onChange={(e) =>
 									setShortDescription(e.target.value)
 								}
-							/>
+							/> */}
 						</div>
 						{/* <div className="ipt_box">
-							<label className="label_name">
-								Ảnh sản phẩm
-							</label>
+							<label className="label_name">Ảnh sản phẩm</label>
 							<ul className="adm_lst_images_product">
 								{images &&
 									images.map((image, index) => (

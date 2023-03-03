@@ -1,8 +1,70 @@
 .dropdown {
 	&_wrap {
 		position: relative;
+		max-width: 400px;
 	}
-	&_text {
-		width: 100%;
+
+	&_inner {
+		display: flex;
+		align-items: center;
+		padding: 0 5px 1px;
+		border: 1px solid #e8e8e8;
+		border-radius: 3px;
+
+		.option_selected_box {
+			margin-right: 5px;
+		}
+
+		.option_selected_item {
+			display: inline-flex;
+			align-items: center;
+			padding: 4px 8px;
+			background: rgba(0, 0, 0, 0.08);
+			border-radius: 15px;
+
+			.text {
+				font-size: 1.5rem;
+			}
+		}
+
+		.btn-remove {
+			width: 18px;
+			height: 18px;
+			margin-left: 5px;
+			background: url(../../image/icon_clear.svg) no-repeat;
+			background-size: cover;
+		}
+	}
+
+	&_input {
+		width: auto;
+		border: none;
+		outline: none;
+	}
+
+	&_list {
+		display: block;
+		position: absolute;
+		top: 37px;
+		left: 0;
+		z-index: $layer-index + 9;
+		min-width: 250px;
+		padding: 10px 0;
+		box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.08);
+		background: #fff;
+	}
+
+	&_item {
+		padding: 8px 45px 8px 10px;
+		&:not(:last-child) {
+			border-bottom: 1px solid rgba(204, 204, 204, 0.18);
+		}
+	}
+
+	&_btn {
+		font-size: 15px;
+		&:hover {
+			font-weight: 600;
+		}
 	}
 }
